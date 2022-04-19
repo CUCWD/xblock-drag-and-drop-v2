@@ -140,6 +140,24 @@ class DragAndDropBlock(
         enforce_type=True,
     )
 
+    from xmodule.fields import RelativeTime
+
+    estimated_time = RelativeTime(
+        display_name=_("Estimated Time"),
+        help=_("The estimated time to complete this component. Formatted as HH:MM:SS. The maximum value is 23:59:59."),
+        scope=Scope.settings,
+        default="00:05:00",
+        enforce_type=True,
+    )
+
+    show_estimated_time = Boolean(
+        display_name=_("Estimated Time Toggle Display"),
+        help=_("Used to show estimated time for this component. Not showing the time is the default."),
+        scope=Scope.settings,
+        default=False,
+        enforce_type=True,
+    )
+
     item_background_color = String(
         display_name=_("Item background color"),
         help=_("The background color of draggable items in the problem (example: 'blue' or '#0000ff')."),
@@ -374,6 +392,8 @@ class DragAndDropBlock(
             "graded": getattr(self, 'graded', False),
             "weighted_max_score": self.max_score() * self.weight,
             "max_items_per_zone": self.max_items_per_zone,
+            "estimated_time": self.estimated_time,
+            "show_estimated_time": self.show_estimated_time,
             # SDK doesn't supply url_name.
             "url_name": getattr(self, 'url_name', ''),
             "display_zone_labels": self.data.get('displayLabels', False),
@@ -462,6 +482,8 @@ class DragAndDropBlock(
         self.mode = submissions['mode']
         self.max_attempts = submissions['max_attempts']
         self.show_title = submissions['show_title']
+        self.estimated_time = submissions['estimated_time']
+        self.show_estimated_time = submissions['show_estimated_time']
         self.question_text = submissions['problem_text']
         self.show_question_header = submissions['show_problem_header']
         self.weight = float(submissions['weight'])

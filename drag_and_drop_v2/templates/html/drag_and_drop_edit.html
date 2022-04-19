@@ -51,11 +51,26 @@
 
                     <label class="h4">
                         <span>{% trans fields.weight.display_name %}</span>
-                        <input class="weight" type="number" step="0.1" value="{{ self.weight|unlocalize }}" />
+                        <input class="weight" type="number" value="{{ self.weight|unlocalize }}" />
                     </label>
                     <div id="weight-description-{{id_suffix}}" class="assessment-setting form-help">
                       {% trans fields.weight.help %}
                     </div>
+
+                    <label class="h4">
+                        <span>{% trans fields.estimated_time.display_name %} (HH:MM:SS)</span>
+                        <input class="estimated-time" placeholder="HH:MM:SS" autocomplete="off" type="text" value="{{ self.estimated_time }}" />
+                    </label>
+                    <div id="estimated_time-description-{{id_suffix}}" class="assessment-setting form-help">
+                      {% trans fields.estimated_time.help %}
+                    </div>
+
+                    <label class="checkbox-label" title="{% trans fields.show_estimated_time.help %}">
+                        <input class="show-estimated-time" type="checkbox"
+                          {% if self.show_estimated_time %}checked="checked"{% endif %}>
+                        {% trans fields.show_estimated_time.display_name %}
+                        <span class="sr">{% trans fields.show_estimated_time.help %}</span>
+                    </label>
 
                     <label class="h4">
                         <span>{% trans fields.question_text.display_name %}</span>

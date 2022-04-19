@@ -700,6 +700,8 @@ function DragAndDropEditBlock(runtime, element, params) {
                             'mode': $element.find(".problem-mode").val(),
                             'max_attempts': $element.find(".max-attempts").val(),
                             'show_title': $element.find('.show-title').is(':checked'),
+                            'estimated_time': $element.find('.estimated-time').val(),
+                            'show_estimated_time': $element.find('.show-estimated-time').is(':checked'),
                             'weight': $element.find('.weight').val(),
                             'problem_text': $element.find('.problem-text').val(),
                             'show_problem_header': $element.find('.show-problem-header').is(':checked'),
